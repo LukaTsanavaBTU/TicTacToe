@@ -56,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
+            android:gravity="center"
             android:hint="Player 1 Insert Name"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
@@ -68,6 +69,8 @@
             android:id="@+id/etP2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
             android:hint="Player 2 Insert Name"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
@@ -75,6 +78,26 @@
             android:backgroundTint="@color/white"
             android:maxLength="10"
             android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/etWinningScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Insert Winning Score"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="@font/pixel_font"
+            android:backgroundTint="@color/white"
+            android:maxLength="2"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Default Value Is 5)"
+            android:textColor="@color/white"
+            android:fontFamily="@font/pixel_font" />
 
         <Button
             android:id="@+id/btStart"

@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvP1score: TextView
     private lateinit var tvP2name: TextView
     private lateinit var tvP2score: TextView
+    private var winningScore = ""
     private var xTurn = true
     private var gamePaused = false
     private var usedIds = mutableListOf("")
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         val p1Name = intent.getStringExtra("p1Name")
         val p2Name = intent.getStringExtra("p2Name")
+        winningScore = intent.getStringExtra("winningScore").toString()
 
         tvP1name.text = "$p1Name:"
         tvP2name.text = "$p2Name:"
@@ -81,21 +83,43 @@ class MainActivity : AppCompatActivity() {
                         || combination[2] + combination[5] + combination[8]  == "XXX" || combination[0] + combination[1] + combination[2]  == "XXX"
                         || combination[3] + combination[4] + combination[5]  == "XXX" || combination[6] + combination[7] + combination[8]  == "XXX"
                         || combination[0] + combination[4] + combination[8]  == "XXX" || combination[2] + combination[4] + combination[6]  == "XXX") {
-                        showToast("blue")
                         tvP1score.text = (tvP1score.text.toString().toInt() + 1).toString()
                         gamePaused = true
+                        if (tvP1score.text.toString() != winningScore) {
+                            showToast("blue")
+                        }
                     }
                     else if ( combination[0] + combination[3] + combination[6]  == "OOO" || combination[1] + combination[4] + combination[7]  == "OOO"
                         || combination[2] + combination[5] + combination[8]  == "OOO" || combination[0] + combination[1] + combination[2]  == "OOO"
                         || combination[3] + combination[4] + combination[5]  == "OOO" || combination[6] + combination[7] + combination[8]  == "OOO"
                         || combination[0] + combination[4] + combination[8]  == "OOO" || combination[2] + combination[4] + combination[6]  == "OOO" ) {
-                        showToast("red")
                         tvP2score.text = (tvP2score.text.toString().toInt() + 1).toString()
                         gamePaused = true
+                        if (tvP2score.text.toString() != winningScore) {
+                            showToast("red")
+                        }
                     }
                     else if (combination.all { it != "" }) {
                         showToast("tie")
                         gamePaused = true
+                    }
+                    if (tvP1score.text.toString() == winningScore) {
+                        intent = Intent(applicationContext, VictoryScreen::class.java)
+                        val winner = "p1"
+                        val winnerName = tvP1name.text.toString().dropLast(1)
+                        intent.putExtra("winner", winner)
+                        intent.putExtra("winnerName", winnerName)
+                        finish()
+                        startActivity(intent)
+                    }
+                    else if (tvP2score.text.toString() == winningScore) {
+                        intent = Intent(applicationContext, VictoryScreen::class.java)
+                        val winner = "p2"
+                        val winnerName = tvP2name.text.toString().dropLast(1)
+                        intent.putExtra("winner", winner)
+                        intent.putExtra("winnerName", winnerName)
+                        finish()
+                        startActivity(intent)
                     }
                 }
             }
@@ -107,7 +131,7 @@ class MainActivity : AppCompatActivity() {
         val layout = inflater.inflate(R.layout.toast_layout, findViewById(R.id.toastLayout))
         val toast = Toast(applicationContext)
         toast.setGravity(Gravity.BOTTOM, 0,0)
-        toast.duration = Toast.LENGTH_LONG
+        toast.duration = Toast.LENGTH_SHORT
         toast.view = layout
         if (state == "red") {
 

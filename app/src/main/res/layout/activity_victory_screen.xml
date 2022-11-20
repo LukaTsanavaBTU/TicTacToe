@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/dark_grey"
+    tools:context=".VictoryScreen">
+
+    <TextView
+        android:id="@+id/tvVictoryPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/pixel_font" />
+
+    <TextView
+        android:id="@+id/tvVictoryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Is The Winner!"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/pixel_font" />
+
+    <Button
+        android:id="@+id/btPlayAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="PLAY AGAIN"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/pixel_font"
+        android:backgroundTint="@color/red"/>
+
+</LinearLayout>
